@@ -38,6 +38,23 @@ const createUser = async (req, res) => {
   }
 };
 
+const validateUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const result = await pool.query(
+      "SELECT * FROM users WHERE email = $1 AND password = $2",
+      [email, password]
+    );
+    if (result.rows.length === 0) {
+      return res.status(401).send("Invalid email or password");
+    }
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
 const getCommissions = async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM commissions");
@@ -111,6 +128,7 @@ const updateCommission = async (req, res) => {
 export {
   pool,
   createUser,
+  validateUser,
   getCommissions,
   updateCommission,
   addCommission,
