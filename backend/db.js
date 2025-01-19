@@ -70,18 +70,13 @@ const getCommissions = async (req, res) => {
 };
 
 const getMyCommissions = async (req, res) => {
-    const { user_id } = req.params;
     try {
         const result = await pool.query(
-            "SELECT id, title, description, radius, time, user_id, status, location FROM commissions WHERE user_id = $1",
-            [user_id]
+            "SELECT id, title, description, radius, time, user_id, status, location FROM commissions WHERE user_id = 1"
         );
-        if (result.rows.length === 0) {
-            return res.status(404).send("No commissions found for this user");
-        }
         res.status(200).json(result.rows);
     } catch (error) {
-        console.error(error);
+        console.error("Error fetching commissions:", error);
         res.status(500).send("Server error");
     }
 };

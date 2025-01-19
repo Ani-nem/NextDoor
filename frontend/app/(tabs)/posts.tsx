@@ -1,11 +1,17 @@
-import { View, Text, StyleSheet, ScrollView, RefreshControl} from "react-native";
-import React, {useState, useEffect} from "react";
+import {
+    View,
+    Text,
+    StyleSheet,
+    ScrollView,
+    RefreshControl,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { Link } from "expo-router";
 import { Job } from "@/types/job";
 import JobList from "@/components/jobList";
 
 const Page = () => {
-  const [jobs, setJobs] = React.useState([]);
+    const [jobs, setJobs] = React.useState([]);
     const [refreshing, setRefreshing] = React.useState(false);
 
     const dummyData: Job[] = [
@@ -139,30 +145,29 @@ const Page = () => {
     ];
 
     const fetchJobs = () => {
-        fetch("http://localhost:2000/commission/myposts")
+        fetch("http://localhost:2000/myposts")
             .then((response) => response.json())
             .then((data) => setJobs(data))
             .catch((error) => console.error(error));
-    }
+    };
 
-    const onRefresh = () =>{
+    const onRefresh = () => {
         setRefreshing(true);
         fetchJobs();
         setRefreshing(false);
-    }
+    };
 
     useEffect(() => {
         fetchJobs();
     }, []);
 
-
-
     return (
-        <ScrollView 
-        contentContainerStyle={styles.container}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
+        <ScrollView
+            contentContainerStyle={styles.container}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+        >
             <View style={styles.header}>
                 <Text>ICON</Text>
                 <Text>My Posts</Text>

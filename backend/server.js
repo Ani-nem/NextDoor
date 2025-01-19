@@ -5,6 +5,7 @@ import {
     createUser,
     validateUser,
     getCommissions,
+    getMyCommissions,
     updateCommission,
     addCommission,
     getUser,
@@ -43,7 +44,7 @@ app.get("/commission", (req, res) => {
     getCommissions(req, res);
 });
 
-app.get("/commission/myposts", (req, res) => {
+app.get("/myposts", (req, res) => {
     getMyCommissions(req, res);
 });
 

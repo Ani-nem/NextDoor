@@ -83,15 +83,18 @@ const styles = StyleSheet.create({
     container: { padding: 10 },
     card: {
         marginTop: 20,
-        backgroundColor: "#F0F0F0",
+        paddingTop: 20,
+        backgroundColor: "#F0F0F0", // Ensure a non-transparent background
         borderRadius: 10,
-        overflow: "hidden",
         width: "100%",
-        elevation: 3, // Adds a shadow on Android
-        shadowColor: "#000", // Shadow for iOS
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
+        // Android shadow
+        elevation: 5, // Increase elevation for a more visible shadow
+        // iOS shadow
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 4 }, // Slightly larger offset
+        shadowOpacity: 0.25, // Increase opacity
+        shadowRadius: 5, // Larger radius for a softer shadow
+        overflow: "visible",
     },
     header: {
         backgroundColor: "#A4C2F4", // Light blue color
