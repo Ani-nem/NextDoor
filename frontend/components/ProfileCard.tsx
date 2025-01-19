@@ -76,6 +76,7 @@ const ProfileCard: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+    container: {},
     card: {
         marginTop: 20,
         backgroundColor: "#F0F0F0",
