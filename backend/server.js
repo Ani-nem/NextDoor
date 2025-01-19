@@ -16,7 +16,7 @@ const PORT = 2000;
 // Enable CORS for all routes
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:8081",
     credentials: true,
   })
 );
