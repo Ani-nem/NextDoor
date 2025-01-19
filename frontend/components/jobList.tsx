@@ -21,8 +21,6 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
     interface Job {
         id: number;
         title: string;
-        longitude: number;
-        latitude: number;
         time: string;
         status: string;
         description: string;
@@ -52,9 +50,20 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
                                             {job.location}
+                                            {job.location}
                                         </Text>
                                         <Text style={styles.details}>
-                                            {job.time}
+                                            {new Date(job.time).toLocaleString(
+                                                "en-US",
+                                                {
+                                                    month: "numeric", // Full month name (e.g., January)
+                                                    day: "numeric", // Day of the month
+                                                    year: "numeric", // Full year
+                                                    hour: "2-digit", // Hours
+                                                    minute: "2-digit", // Minutes
+                                                    hour12: true, // 12-hour format
+                                                }
+                                            )}
                                         </Text>
                                     </View>
                                     <Text style={styles.description}>
@@ -86,7 +95,6 @@ const styles = StyleSheet.create({
         height: SCREEN_HEIGHT * 0.795, // Set the height of the screen
         paddingBottom: 20, // Add padding to the bottom
         alignItems: "center",
-        
     },
     scrollContainer: {
         alignItems: "center", // Center te content horizontally
@@ -109,7 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         padding: 20,
         height: 80,
-        width: "90%",
+        width: "95%",
         borderRadius: 15,
         borderWidth: 1,
         borderColor: "#95AED6",
