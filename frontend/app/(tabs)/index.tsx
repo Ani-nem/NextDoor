@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import JobList from '@/components/jobList'
 
 const Page = () => {
   return (
     <View style={styles.container}>
-      <Text>Browse page</Text>
+      <JobList />
     </View>
   )
 }
