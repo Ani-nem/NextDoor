@@ -3,6 +3,7 @@ import cors from "cors";
 import {
   pool,
   createUser,
+  validateUser,
   getCommissions,
   updateCommission,
   addCommission,
@@ -31,6 +32,10 @@ app.get("/user/:id", (req, res) => {
 
 app.post("/user", (req, res) => {
   createUser(req, res);
+});
+
+app.post("/login", (req, res) => {
+  validateUser(req, res);
 });
 
 app.get("/commission", (req, res) => {
