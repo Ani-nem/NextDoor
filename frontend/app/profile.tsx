@@ -1,34 +1,34 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
 import { Link } from "expo-router";
+import ProfileCard from "../components/ProfileCard";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-const Page = () => {
+const Profile: React.FC = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text>ICON</Text>
+                <Link href={".."}>Home</Link>
                 <Text>Profile & Settings</Text>
-                <Link href={"/profile"}>Profile</Link>
+                <Text>Logout</Text>
             </View>
-            <Text>Browse page</Text>
+            <ProfileCard />
         </View>
     );
 };
 
-export default Page;
-
 const styles = StyleSheet.create({
     container: {
+        marginTop: 60,
         flex: 1,
-        justifyContent: "flex-start",
         alignItems: "center",
+        justifyContent: "flex-start",
     },
     header: {
-        marginTop: 60,
-        marginBottom: 20,
         width: "90%",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
     },
 });
+
+export default Profile;
