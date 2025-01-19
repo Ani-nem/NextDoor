@@ -8,7 +8,7 @@ const Page = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text>ICON</Text>
-                <Text>Profile & Settings</Text>
+                <Text>Browse Commissions</Text>
                 <Link href={"/profile"}>Profile</Link>
             </View>
             <View style={styles.jobListContainer}>
@@ -23,12 +23,12 @@ export default Page;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        
+
         justifyContent: "flex-start",
         alignItems: "center",
     },
     header: {
-        marginTop: 60,
+        marginTop: 70,
         marginBottom: 20,
         width: "90%",
         display: "flex",
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     jobListContainer: {
-      alignItems: "center",
-    }
+        alignItems: "center",
+    },
 });

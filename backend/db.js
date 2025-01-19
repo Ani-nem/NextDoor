@@ -70,16 +70,15 @@ const getCommissions = async (req, res) => {
 };
 
 const addCommission = async (req, res) => {
-    const { title, description, longitude, latitude, radius, time, user_id } =
-        req.body;
+    const { title, description, radius, time, user_id, location } = req.body;
     try {
         const result = await pool.query(
-            "INSERT INTO commissions (title, description, radius, time, user_id, status, location) VALUES ($1, $2, $3, $4, $5, $6, POINT($7, $8)) RETURNING id, title, description, radius, time, user_id, status, location", // Changed query to insert and return specific columns
+            "INSERT INTO commissions (title, description, radius, time, user_id, status, location) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, title, description, radius, time, user_id, status, location",
             [title, description, radius, time, user_id, "INCOMPLETE", location]
         );
         res.status(201).json(result.rows[0]);
     } catch (error) {
-        console.error(error);
+        console.error("Error adding commission:", error.message);
         res.status(500).send("Server error");
     }
 };

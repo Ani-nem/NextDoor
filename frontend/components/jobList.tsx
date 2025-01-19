@@ -45,7 +45,7 @@ const JobList = () => {
                         <View style={styles.container}>
                             <LinearGradient
                                 style={styles.jobContainer}
-                                colors={["white", "#8899ff"]}
+                                colors={["white", "#95AED6"]}
                                 start={{ x: 0, y: 0 }}
                                 end={{ x: 1, y: 0 }}
                             >

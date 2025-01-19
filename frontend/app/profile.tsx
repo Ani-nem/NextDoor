@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 60,
+        marginTop: 70,
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",

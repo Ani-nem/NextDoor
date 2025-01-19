@@ -4,16 +4,14 @@ import { View, Text, StyleSheet } from "react-native";
 
 interface User {
     name: string;
-    longitude: number;
-    latitude: number;
     email: string;
+    location: string;
 }
 
-const dummyUser: User = {
+const dummyData: User = {
     name: "John Doe",
-    longitude: -122.4194,
-    latitude: 37.7749,
     email: "john.doe@example.com",
+    location: "New York, NY",
 };
 
 const ProfileCard: React.FC = () => {
@@ -38,6 +36,13 @@ const ProfileCard: React.FC = () => {
     //     );
     //   }
 
+    useEffect(() => {
+        fetch("http://localhost:2000/user/1")
+            .then((response) => response.json())
+            .then((data) => setUser(data))
+            .catch((error) => console.error(error));
+    }, []);
+
     return (
         <View style={styles.card}>
             <View style={styles.header}>
@@ -49,10 +54,16 @@ const ProfileCard: React.FC = () => {
                 </View>
             </View>
             <View style={styles.body}>
-                <Text style={styles.name}>{dummyUser.name}</Text>
-                <Text style={styles.locationLabel}>
-                    {dummyUser.longitude} {dummyUser.latitude}
-                </Text>
+                {user ? (
+                    <>
+                        <Text style={styles.name}>{user.name}</Text>
+                        <Text style={styles.locationLabel}>
+                            {user.location}
+                        </Text>
+                    </>
+                ) : (
+                    <Text>Loading...</Text>
+                )}
                 <View style={styles.stats}>
                     <Text style={styles.statsText}>
                         0 commissions completed
