@@ -152,7 +152,7 @@ const Page = () => {
                 <Link href={"/profile"}>Profile</Link>
             </View>
             <View style={styles.jobListContainer}>
-                <JobList jobs={dummyData} />
+                <JobList jobs={jobs} />
             </View>
         </View>
     );

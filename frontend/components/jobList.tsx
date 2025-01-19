@@ -15,7 +15,7 @@ interface JobListProps {
     jobs: Job[];
 }
 
-const JobList: React.FC<JobListProps> = ({jobs}) => {
+const JobList: React.FC<JobListProps> = ({ jobs }) => {
     const saveIcon = require("../assets/images/save.png");
 
     interface Job {
@@ -27,7 +27,6 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
         user_id: number;
     }
 
-
     return (
         <View style={styles.screen}>
             <ScrollView
@@ -35,7 +34,10 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
                 showsVerticalScrollIndicator={false}
             >
                 {jobs.map((job) => (
-                    <TouchableOpacity key={job.id} style={styles.parentContainer}>
+                    <TouchableOpacity
+                        key={job.id}
+                        style={styles.parentContainer}
+                    >
                         <View style={styles.container}>
                             <LinearGradient
                                 style={styles.jobContainer}
@@ -49,7 +51,6 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
                                     </Text>
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
-                                            {job.location}
                                             {job.location}
                                         </Text>
                                         <Text style={styles.details}>
@@ -115,8 +116,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        paddingTop: "10%",
         padding: 20,
-        height: 80,
+        height: 90,
         width: "95%",
         borderRadius: 15,
         borderWidth: 1,
@@ -131,7 +133,8 @@ const styles = StyleSheet.create({
         color: "#000",
     },
     detailWrapper: {
-        flexDirection: "row",
+        marginTop: 4,
+        flexDirection: "column",
         gap: 10,
         justifyContent: "flex-start",
     },
@@ -139,7 +142,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "bold",
         color: "#555",
-        marginTop: 4,
     },
     description: {
         fontSize: 14,
