@@ -69,6 +69,23 @@ const getCommissions = async (req, res) => {
     }
 };
 
+const getMyCommissions = async (req, res) => {
+    const { user_id } = req.params;
+    try {
+        const result = await pool.query(
+            "SELECT id, title, description, radius, time, user_id, status, location FROM commissions WHERE user_id = $1",
+            [user_id]
+        );
+        if (result.rows.length === 0) {
+            return res.status(404).send("No commissions found for this user");
+        }
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Server error");
+    }
+};
+
 const addCommission = async (req, res) => {
     const { title, description, radius, time, user_id, location } = req.body;
     try {
@@ -124,6 +141,7 @@ export {
     createUser,
     validateUser,
     getCommissions,
+    getMyCommissions,
     updateCommission,
     addCommission,
     getUser,
