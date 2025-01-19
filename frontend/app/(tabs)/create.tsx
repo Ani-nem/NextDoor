@@ -23,7 +23,7 @@ const Page = () => {
             radius: 10, // Placeholder
             time: new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString(), // Placeholder
             user_id: 1, // Temporary user ID
-            location: "DUMMY LOCATION", // Placeholder
+            location: location,
         };
         try {
             const response = await fetch("http://localhost:2000/commission", {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     header: {
-        marginTop: 60,
+        marginTop: 70,
         marginBottom: 20,
         width: "90%",
         display: "flex",
