@@ -50,7 +50,6 @@ const JobList: React.FC<JobListProps> = ({jobs}) => {
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
                                             {job.location}
-                                            {job.location}
                                         </Text>
                                         <Text style={styles.details}>
                                             {new Date(job.time).toLocaleString(
