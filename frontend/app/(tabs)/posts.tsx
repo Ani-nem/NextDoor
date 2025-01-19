@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
+
 const Page = () => {
   return (
     <View style={styles.container}>
       <Text>OUR POSTS</Text>
+      
     </View>
   )
 }

@@ -9,9 +9,13 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Job } from "../types/job";
 
-const JobList = () => {
-    const [jobs, setJobs] = useState<Job[]>([]);
+interface JobListProps {
+    jobs: Job[];
+}
+
+const JobList: React.FC<JobListProps> = ({jobs}) => {
     const saveIcon = require("../assets/images/save.png");
 
     interface Job {
@@ -24,105 +28,7 @@ const JobList = () => {
         description: string;
         user_id: number;
     }
-    const dummyData: Job[] = [
-        {
-            id: 1,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 2,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 3,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-        {
-            id: 4,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 5,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 6,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-        {
-            id: 7,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 8,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 9,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-    ];
 
-    useEffect(() => {
-        fetch("http://localhost:2000/commissions")
-            .then((response) => response.json())
-            .then((data) => setJobs(data))
-            .catch((error) => console.error(error));
-    }, []);
 
     return (
         <View style={styles.screen}>
@@ -130,7 +36,7 @@ const JobList = () => {
                 contentContainerStyle={styles.scrollContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {dummyData.map((job) => (
+                {jobs.map((job) => (
                     <TouchableOpacity key={job.id} style={styles.parentContainer}>
                         <View style={styles.container}>
                             <LinearGradient
@@ -145,7 +51,7 @@ const JobList = () => {
                                     </Text>
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
-                                            {job.longitude}, {job.latitude}
+                                            {job.location}
                                         </Text>
                                         <Text style={styles.details}>
                                             {job.time}

@@ -12,5 +12,6 @@ const TabLayout = () => {
         </Tabs>
     );
 };
+//TODO: change headers to contain buttons instead of index.tsx
 
 export default TabLayout;
