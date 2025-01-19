@@ -3,75 +3,131 @@ import axios from "axios";
 import { View, Text, StyleSheet } from "react-native";
 
 interface User {
-  name: string;
-  longitude: number;
-  latitude: number;
-  email: string;
+    name: string;
+    longitude: number;
+    latitude: number;
+    email: string;
 }
 
 const dummyUser: User = {
-  name: "John Doe",
-  longitude: -122.4194,
-  latitude: 37.7749,
-  email: "john.doe@example.com",
+    name: "John Doe",
+    longitude: -122.4194,
+    latitude: 37.7749,
+    email: "john.doe@example.com",
 };
 
 const ProfileCard: React.FC = () => {
-  const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:2000/user")
-      .then((response: { data: User }) => {
-        setUser(response.data);
-      })
-      .catch((error: any) => {
-        console.error("There was an error fetching the user data!", error);
-      });
-  }, []);
+    //   useEffect(() => {
+    //     axios
+    //       .get("http://localhost:2000/user")
+    //       .then((response: { data: User }) => {
+    //         setUser(response.data);
+    //       })
+    //       .catch((error: any) => {
+    //         console.error("There was an error fetching the user data!", error);
+    //       });
+    //   }, []);
 
-  if (!user) {
+    //   if (!user) {
+    //     return (
+    //       <View style={styles.container}>
+    //         <Text>Loading...</Text>
+    //       </View>
+    //     );
+    //   }
+
     return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
+        <View style={styles.card}>
+            <View style={styles.header}>
+                <View style={styles.avatarPlaceholder}>
+                    {/* Placeholder for avatar */}
+                </View>
+                <View style={styles.editIcon}>
+                    {/* Placeholder for an edit icon */}
+                </View>
+            </View>
+            <View style={styles.body}>
+                <Text style={styles.name}>{dummyUser.name}</Text>
+                <Text style={styles.locationLabel}>
+                    {dummyUser.longitude} {dummyUser.latitude}
+                </Text>
+                <View style={styles.stats}>
+                    <Text style={styles.statsText}>
+                        0 commissions completed
+                    </Text>
+                    <Text style={styles.statsText}>0 commissions posted</Text>
+                </View>
+            </View>
+        </View>
     );
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{user.name}</Text>
-      <Text style={styles.coordinates}>
-        Longitude: {user.longitude}
-        Latitude:{user.latitude}
-      </Text>
-      <Text style={styles.email}>Email: {user.email}</Text>
-    </View>
-  );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#25292e",
-    alignItems: "center",
-  },
-  topHalf: {
-    backgroundColor: "#4CAF50",
-    padding: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  name: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  coordinates: {
-    fontSize: 14,
-  },
-  email: {
-    fontSize: 14,
-  },
+    card: {
+        marginTop: 20,
+        backgroundColor: "#F0F0F0",
+        borderRadius: 10,
+        overflow: "hidden",
+        width: "90%",
+        elevation: 3, // Adds a shadow on Android
+        shadowColor: "#000", // Shadow for iOS
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    header: {
+        backgroundColor: "#A4C2F4", // Light blue color
+        height: 100,
+        position: "relative",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    avatarPlaceholder: {
+        backgroundColor: "#E0E0E0",
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        position: "absolute",
+        bottom: -25,
+        left: 20,
+    },
+    editIcon: {
+        position: "absolute",
+        top: 10,
+        right: 10,
+        backgroundColor: "#FFFFFF",
+        padding: 5,
+        borderRadius: 5,
+        elevation: 2,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 2,
+    },
+    body: {
+        paddingTop: 40, // Space for avatar overlap
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+    },
+    name: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#000000",
+    },
+    locationLabel: {
+        fontSize: 12,
+        color: "#808080",
+        marginTop: 5,
+    },
+    stats: {
+        marginTop: 15,
+    },
+    statsText: {
+        fontSize: 12,
+        color: "#808080",
+    },
 });
 
 export default ProfileCard;
