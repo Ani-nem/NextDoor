@@ -4,7 +4,7 @@ import React from 'react'
 const Page = () => {
   return (
     <View style={styles.container}>
-      <Text>Browse page</Text>
+      <Text>Create page</Text>
     </View>
   )
 }
