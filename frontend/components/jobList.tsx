@@ -67,7 +67,10 @@ const JobList: React.FC<JobListProps> = ({ jobs }) => {
                                             )}
                                         </Text>
                                     </View>
-                                    <Text style={styles.description}>
+                                    <Text
+                                        style={styles.description}
+                                        numberOfLines={1}
+                                    >
                                         {job.description}
                                     </Text>
                                 </View>
@@ -116,9 +119,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingTop: "10%",
-        padding: 20,
-        height: 90,
+        padding: "7%",
+        paddingLeft: 20,
+        paddingRight: 20,
+        height: 120,
         width: "95%",
         borderRadius: 15,
         borderWidth: 1,

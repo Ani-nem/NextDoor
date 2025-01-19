@@ -6,7 +6,7 @@ const Page = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text>ND</Text>
+                <Text>ICON</Text>
                 <Text>My Posts</Text>
                 <Link href={"/profile"}>Profile</Link>
             </View>

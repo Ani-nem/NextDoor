@@ -44,31 +44,35 @@ const ProfileCard: React.FC = () => {
     }, []);
 
     return (
-        <View style={styles.card}>
-            <View style={styles.header}>
-                <View style={styles.avatarPlaceholder}>
-                    {/* Placeholder for avatar */}
+        <View style={styles.container}>
+            <View style={styles.card}>
+                <View style={styles.header}>
+                    <View style={styles.avatarPlaceholder}>
+                        {/* Placeholder for avatar */}
+                    </View>
+                    <View style={styles.editIcon}>
+                        {/* Placeholder for an edit icon */}
+                    </View>
                 </View>
-                <View style={styles.editIcon}>
-                    {/* Placeholder for an edit icon */}
-                </View>
-            </View>
-            <View style={styles.body}>
-                {user ? (
-                    <>
-                        <Text style={styles.name}>{user.name}</Text>
-                        <Text style={styles.locationLabel}>
-                            {user.location}
+                <View style={styles.body}>
+                    {user ? (
+                        <>
+                            <Text style={styles.name}>{user.name}</Text>
+                            <Text style={styles.locationLabel}>
+                                {user.location}
+                            </Text>
+                        </>
+                    ) : (
+                        <Text>Loading...</Text>
+                    )}
+                    <View style={styles.stats}>
+                        <Text style={styles.statsText}>
+                            0 commissions completed
                         </Text>
-                    </>
-                ) : (
-                    <Text>Loading...</Text>
-                )}
-                <View style={styles.stats}>
-                    <Text style={styles.statsText}>
-                        0 commissions completed
-                    </Text>
-                    <Text style={styles.statsText}>0 commissions posted</Text>
+                        <Text style={styles.statsText}>
+                            0 commissions posted
+                        </Text>
+                    </View>
                 </View>
             </View>
         </View>
@@ -76,13 +80,13 @@ const ProfileCard: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {},
+    container: { padding: 10 },
     card: {
         marginTop: 20,
         backgroundColor: "#F0F0F0",
         borderRadius: 10,
         overflow: "hidden",
-        width: "90%",
+        width: "100%",
         elevation: 3, // Adds a shadow on Android
         shadowColor: "#000", // Shadow for iOS
         shadowOffset: { width: 0, height: 2 },
