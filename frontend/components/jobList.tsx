@@ -17,108 +17,15 @@ const JobList = () => {
     interface Job {
         id: number;
         title: string;
-        longitude: number;
-        latitude: number;
         time: string;
         status: string;
         description: string;
         user_id: number;
+        location: string;
     }
-    const dummyData: Job[] = [
-        {
-            id: 1,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 2,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 3,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-        {
-            id: 4,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 5,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 6,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-        {
-            id: 7,
-            title: "Job 1",
-            longitude: 123.456,
-            latitude: 78.9,
-            time: "9:00 AM",
-            status: "Pending",
-            description: "Lorem ipsum dolor sit amet",
-            user_id: 123,
-        },
-        {
-            id: 8,
-            title: "Job 2",
-            longitude: 45.678,
-            latitude: 12.34,
-            time: "2:00 PM",
-            status: "Completed",
-            description: "Consectetur adipiscing elit",
-            user_id: 456,
-        },
-        {
-            id: 9,
-            title: "Job 3",
-            longitude: 98.765,
-            latitude: 43.21,
-            time: "5:00 PM",
-            status: "In Progress",
-            description: "Sed do eiusmod tempor incididunt",
-            user_id: 789,
-        },
-    ];
 
     useEffect(() => {
-        fetch("http://localhost:2000/commissions")
+        fetch("http://localhost:2000/commission")
             .then((response) => response.json())
             .then((data) => setJobs(data))
             .catch((error) => console.error(error));
@@ -130,8 +37,11 @@ const JobList = () => {
                 contentContainerStyle={styles.scrollContainer}
                 showsVerticalScrollIndicator={false}
             >
-                {dummyData.map((job) => (
-                    <TouchableOpacity key={job.id} style={styles.parentContainer}>
+                {jobs.map((job) => (
+                    <TouchableOpacity
+                        key={job.id}
+                        style={styles.parentContainer}
+                    >
                         <View style={styles.container}>
                             <LinearGradient
                                 style={styles.jobContainer}
@@ -145,10 +55,20 @@ const JobList = () => {
                                     </Text>
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
-                                            {job.longitude}, {job.latitude}
+                                            {job.location}
                                         </Text>
                                         <Text style={styles.details}>
-                                            {job.time}
+                                            {new Date(job.time).toLocaleString(
+                                                "en-US",
+                                                {
+                                                    month: "numeric", // Full month name (e.g., January)
+                                                    day: "numeric", // Day of the month
+                                                    year: "numeric", // Full year
+                                                    hour: "2-digit", // Hours
+                                                    minute: "2-digit", // Minutes
+                                                    hour12: true, // 12-hour format
+                                                }
+                                            )}
                                         </Text>
                                     </View>
                                     <Text style={styles.description}>
@@ -180,7 +100,6 @@ const styles = StyleSheet.create({
         height: SCREEN_HEIGHT * 0.795, // Set the height of the screen
         paddingBottom: 20, // Add padding to the bottom
         alignItems: "center",
-        
     },
     scrollContainer: {
         alignItems: "center", // Center te content horizontally
@@ -203,7 +122,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         padding: 20,
         height: 80,
-        width: "90%",
+        width: "95%",
         borderRadius: 15,
         borderWidth: 1,
         borderColor: "#95AED6",
