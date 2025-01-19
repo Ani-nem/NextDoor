@@ -9,9 +9,13 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Job } from "../types/job";
 
-const JobList = () => {
-    const [jobs, setJobs] = useState<Job[]>([]);
+interface JobListProps {
+    jobs: Job[];
+}
+
+const JobList: React.FC<JobListProps> = ({jobs}) => {
     const saveIcon = require("../assets/images/save.png");
 
     interface Job {
@@ -21,15 +25,8 @@ const JobList = () => {
         status: string;
         description: string;
         user_id: number;
-        location: string;
     }
 
-    useEffect(() => {
-        fetch("http://localhost:2000/commission")
-            .then((response) => response.json())
-            .then((data) => setJobs(data))
-            .catch((error) => console.error(error));
-    }, []);
 
     return (
         <View style={styles.screen}>
@@ -38,10 +35,7 @@ const JobList = () => {
                 showsVerticalScrollIndicator={false}
             >
                 {jobs.map((job) => (
-                    <TouchableOpacity
-                        key={job.id}
-                        style={styles.parentContainer}
-                    >
+                    <TouchableOpacity key={job.id} style={styles.parentContainer}>
                         <View style={styles.container}>
                             <LinearGradient
                                 style={styles.jobContainer}
@@ -55,6 +49,7 @@ const JobList = () => {
                                     </Text>
                                     <View style={styles.detailWrapper}>
                                         <Text style={styles.details}>
+                                            {job.location}
                                             {job.location}
                                         </Text>
                                         <Text style={styles.details}>
