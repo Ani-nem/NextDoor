@@ -43,6 +43,10 @@ app.get("/commission", (req, res) => {
     getCommissions(req, res);
 });
 
+app.get("/commission/myposts", (req, res) => {
+    getMyCommissions(req, res);
+});
+
 app.post("/commission", (req, res) => {
     addCommission(req, res);
 });
