@@ -131,8 +131,8 @@ const JobList = () => {
                 showsVerticalScrollIndicator={false}
             >
                 {dummyData.map((job) => (
-                    <TouchableOpacity style={styles.parentContainer}>
-                        <View key={job.id} style={styles.container}>
+                    <TouchableOpacity key={job.id} style={styles.parentContainer}>
+                        <View style={styles.container}>
                             <LinearGradient
                                 style={styles.jobContainer}
                                 colors={["white", "#8899ff"]}
